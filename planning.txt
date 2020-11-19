@@ -1,0 +1,7 @@
+Model File-Name: Sticky.cs
+        Columns:        
+        public int Id {get;set;}
+        public string Notetitle {get;set;} 
+        public string Notetext {get;set;}
+        public int Order {get;set;}
+

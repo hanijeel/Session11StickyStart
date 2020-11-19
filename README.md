@@ -20,3 +20,4 @@ Extra super bonus!
 * make the table in the db - 'migrate'
 * run it! make sure you can create stickies!
 * start making it look/work like you actually want it to.
+
