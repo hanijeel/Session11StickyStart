@@ -9,45 +9,18 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Notetitle)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Notetext)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NoteDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Order)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notetitle)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notetext)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoteDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Order)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
+<div class="d-flex flex-row flex-wrap justify-content-start">
+@foreach (var item in  Model){
+    <div class="card sticky" style="width: 18rem;">
+        <div class="card-body sticky-body">
+            <h5 class="card-title">@item.Notetitle</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@item.NoteDate</h6>
+            <p class="card-text">@item.Notetext</p>
+            <a class="card-link" asp-action="Create">New</a>
+            <a class="card-link" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+            <a class="card-link" asp-action="Details" asp-route-id="@item.Id">Details</a>
+            <a class="card-link" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+        </div>
+    </div>
 }
-    </tbody>
-</table>
+</div>
