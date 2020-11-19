@@ -5,3 +5,14 @@ Model File-Name: Sticky.cs
         public string Notetext {get;set;}
         public int Order {get;set;}
 
+dotnet aspnet-codegenerator controller -name StickiesController -m Sticky -dc StickyContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+Add a Nav stickies
+automatically set order and post date/time
+style stickynotes as sticky notes (not table)
+'Create' doesn't go to the create page => all happens on one page
+order/reorder sticky notes
+
