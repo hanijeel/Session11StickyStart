@@ -4,23 +4,54 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>All the stickies are here!</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
 <div class="d-flex flex-row flex-wrap justify-content-start">
-@foreach (var item in  Model){
+@* add a new sticky note *@
+
     <div class="card sticky" style="width: 18rem;">
         <div class="card-body sticky-body">
-            <h5 class="card-title">@item.Notetitle</h5>
-            <h6 class="card-subtitle mb-2 text-muted">@item.NoteDate</h6>
-            <p class="card-text">@item.Notetext</p>
-            <a class="card-link" asp-action="Create">New</a>
-            <a class="card-link" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-            <a class="card-link" asp-action="Details" asp-route-id="@item.Id">Details</a>
-            <a class="card-link" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label for="NoteTitle" class="control-label">Title:</label>
+                    <input type="text" id="NoteTitle" name="NoteTitle" class="form-control" placeholder="Title" />
+                </div>
+                <div class="form-group">
+                    <label for="NoteText" class="control-label">Note:</label>
+                    <input type="text" id="NoteText" name="NoteText" class="form-control" placeholder="Notes"/>
+                </div>
+                <div class="gorm-group">
+                    <input type="submit" value="Create New" class="btn btn-primary" />
+                </div>
+            </form>
         </div>
     </div>
-}
+
+    @* list all the sticky notes *@
+    @foreach (var item in  Model){
+        <div class="card sticky" style="width: 18rem;">
+            <div class="card-body sticky-body">
+                <h5 class="card-title">@item.Notetitle</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@item.NoteDate</h6>
+                <p class="card-text">@item.Notetext</p>
+                <a class="card-link" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                <a class="card-link" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a class="card-link" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </div>
+        </div>
+    }
 </div>
+@* this is the javascript section *@
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        function submitFetch(){
+            var title = document.getElementById("NoteTitle").value;
+            var text = document.getElementById("NoteText").value;
+
+            data={NoteTitle:title, NoteText:text };
+            console.log(data);
+        }
+    </script>
+}
